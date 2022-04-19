@@ -1,0 +1,14 @@
+# Visual Studio 
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+packages/
+*/bin/
+*/obj/
+*/upload/
+.vscode/
+.vs/
+
+.DS_Store
