@@ -186,6 +186,7 @@ namespace Json2DartClass
 
         public string createDartClass(StringBuilder sb)
         {
+            sb.AppendLine($"import 'dart:convert';");
             sb.AppendLine($"class {dartTypeName} {{");
 
             // declarations
@@ -216,19 +217,19 @@ namespace Json2DartClass
             sb.AppendLine();
 
             // from map method
-            sb.AppendLine("\tvoid fromMap(Map<String, dynamic> map) {");
-            //
+            sb.AppendLine($"\tfactory {dartTypeName}.fromMap(Map<String, dynamic> map) {{");
+            sb.AppendLine($"\t\treturn {dartTypeName}(");
             foreach (var item in this.nameValues)
             {
-                sb.AppendLine(item.value.DartMapFetching(item.name));
+                sb.AppendLine("\t\t\t" + item.value.DartMapFetching(item.name));
             }
-            //
+            sb.AppendLine("\t\t);");
             sb.AppendLine("\t}");
             sb.AppendLine();
 
             // to map method
             sb.AppendLine("\tMap<String, dynamic> toMap() {");
-            sb.AppendLine("\t\tfinal Map<String, dynamic> data = new Map<String, dynamic>();");
+            sb.AppendLine("\t\tfinal Map<String, dynamic> data = <String, dynamic>{};");
             //
             foreach (var item in this.nameValues)
             {
@@ -288,8 +289,6 @@ namespace Json2DartClass
             sb.AppendLine();
 
             sb.AppendLine("}");
-            sb.AppendLine("\t");
-            sb.AppendLine("\t");
             sb.AppendLine("\t");
             //
             return sb.ToString();

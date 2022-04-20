@@ -233,7 +233,7 @@ namespace Json2DartClass
 			var notObject = (Length == 0 || !(values[0] is JsonObject));
 
 			return $"\t\tif (map['{name}'] != null) {{\r\n" +
-				$"\t\t\t{name} = [];\r\n" +
+				$"\t\t\t{name} : [],\r\n" +
 				$"\t\t\tmap['{name}'].forEach((v) {{\r\n" +
 				$"\t\t\t\t{name}!.add({(notObject ? "v" : $"({values[0].dartTypeName}()..fromMap(v))")});\r\n" +
 				$"\t\t\t}});\r\n" +

@@ -23,7 +23,7 @@ namespace Json2DartClass
 
         public override string DartMapFetching(string name)
         {
-            return $"\t\t{name} = map['{name}'] ?? false;";
+            return $"\t\t{name} : map['{name}'] ?? false,";
         }
 
         public override void toString(StringBuilder sb, int? indents)
