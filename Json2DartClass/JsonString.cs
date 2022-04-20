@@ -18,7 +18,7 @@ namespace Json2DartClass
         
         public override string DartMapAssignment(string name)
         {
-            return $"\t\tdata['{name}'] = this.{name};";
+            return $"\t\tdata['{name}'] = {name};";
         }
 
         public override string DartMapFetching(string name)

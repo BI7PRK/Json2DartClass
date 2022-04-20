@@ -128,10 +128,10 @@ namespace Json2DartClass
                         }
                         else if (Regex.IsMatch(token.Value, number_pattern))
                         {
-                            var isDouble = token.Value.Contains("."); 
-                            //处理值为 X.0 是认为是 int
-                            var resetValue = isDouble ? (Convert.ToDouble(token.Value) + .1D).ToString() : token.Value;
-                            Console.WriteLine(">> {0}, {1}", resetValue, isDouble);
+                            // when value is X.0 been known as not int type
+                            var sp = token.Value.Split('.');
+                            var isDouble = sp.Length > 1;
+                            var resetValue = isDouble ? (Convert.ToDouble(sp.First()) + .1D).ToString() : token.Value;
                             state = 4;
                             if (stack.Count == 0)
                             {
