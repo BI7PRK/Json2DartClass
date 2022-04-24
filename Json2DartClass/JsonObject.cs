@@ -178,7 +178,7 @@ namespace Json2DartClass
 
         public override string DartMapFetching(string name)
         {
-            return $"\t\t{name} = map['{name}'] != null ? ({dartTypeName}()..fromMap(map['{name}'])) : null;";
+            return $"\t\t{name}: map['{name}'] != null ? ({dartTypeName}.fromMap(map['{name}'])) : null, ";
         }
 
         string className;

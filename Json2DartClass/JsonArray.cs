@@ -231,13 +231,13 @@ namespace Json2DartClass
 		public override string DartMapFetching(string name)
 		{
 			var notObject = (Length == 0 || !(values[0] is JsonObject));
-
-			return $"\t\tif (map['{name}'] != null) {{\r\n" +
-				$"\t\t\t{name} : [],\r\n" +
-				$"\t\t\tmap['{name}'].forEach((v) {{\r\n" +
-				$"\t\t\t\t{name}!.add({(notObject ? "v" : $"({values[0].dartTypeName}()..fromMap(v))")});\r\n" +
-				$"\t\t\t}});\r\n" +
-				$"\t\t}}";
+			return $"\t\t{name}:map['{name}'] != null ? ((map['{name}'] as List<dynamic>).map((v)=>{values[0].dartTypeName}.fromMap(v)).toList()) : [], ";
+			//return $"\t\tif (map['{name}'] != null) {{\r\n" +
+			//	$"\t\t\t{name} : [],\r\n" +
+			//	$"\t\t\tmap['{name}'].forEach((v) {{\r\n" +
+			//	$"\t\t\t\t{name}!.add({(notObject ? "v" : $"({values[0].dartTypeName}.fromMap(v))")});\r\n" +
+			//	$"\t\t\t}});\r\n" +
+			//	$"\t\t}}";
 		}
 	}
 }
