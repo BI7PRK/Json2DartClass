@@ -10,5 +10,5 @@ packages/
 */upload/
 .vscode/
 .vs/
-
 .DS_Store
+./nuget.cmd

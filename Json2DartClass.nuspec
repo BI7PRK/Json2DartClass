@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Json2DartClass</id>
+    <version>1.0.0</version>
+    <authors>Ben</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <!-- <icon>icon.png</icon> -->
+    <projectUrl>https://github.com/BI7PRK/Json2DartClass</projectUrl>
+    <description>Generate dart class from json</description>
+    <releaseNotes>new</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>dart json</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="SampleDependency" version="1.0.0" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

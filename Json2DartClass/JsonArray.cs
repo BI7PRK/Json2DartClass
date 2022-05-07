@@ -217,7 +217,7 @@ namespace Json2DartClass
 
 		}
 
-		public override string dartTypeName => $"List<{((Length == 0 || values[0] is JsonNull) ? "Object?" : $"{values[0].dartTypeName}?")}>";
+		public override string dartTypeName => $"List<{((Length == 0 || values[0] is JsonNull) ? "Object" : $"{values[0].dartTypeName}")}>";
 
 		public override string DartMapAssignment(string name)
 		{
