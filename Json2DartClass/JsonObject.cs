@@ -42,24 +42,34 @@ namespace Json2DartClass
             if (value != null)
             {
                 nv.value = new JsonString(value);
+                nv.initValue = "";
+                nv.notNull = true;
             }
             else
             {
                 nv.value = new JsonNull();
+                nv.notNull = true;
             }
 			return this;
         }
 
 		public JsonObject add(string name, double value)
         {
-            getOrNew(name).value = new JsonNumber(value);
+            var obj = getOrNew(name);
+            obj.value = new JsonNumber(value);
+            obj.initValue = 0;
+            obj.notNull = true;
             return this;
         }
 
         public JsonObject add(string name, bool value)
         {
-			getOrNew(name).value= new JsonBoolean(value);
-			return this;
+            var obj = getOrNew(name);
+            obj.value= new JsonBoolean(value);
+            obj.initValue = false;
+            obj.notNull = true;
+
+            return this;
         }
 
 		/// <summary>
@@ -201,8 +211,7 @@ namespace Json2DartClass
                 {
                     setInnerType((item.value as JsonArray).getValue(0) as JsonObject, item.name);
                 }
-                //
-                sb.AppendLine(item.value.DartFieldDeclaration(item.name));
+                sb.AppendLine(item.value.DartFieldDeclaration(item.name, item.notNull));
             }
 
             sb.AppendLine();
@@ -211,7 +220,8 @@ namespace Json2DartClass
             sb.Append($"\t{dartTypeName}({{");
             foreach (var item in this.nameValues)
             {
-                sb.Append(item.value.DartConstuctorParams(item.name));
+                Console.WriteLine("{0}={2} {1}", item.name, item.notNull, item.initValue);
+                sb.Append(item.value.DartConstuctorParams(item.name, item.notNull, item.initValue));
             }
             sb.AppendLine("});");
             sb.AppendLine();
@@ -316,24 +326,28 @@ namespace Json2DartClass
     {
         public string name;
         public JsonField value;
-
-		public NameValue(string name)
-		{
-			this.name = name;
-		}
+        public bool notNull;
+        public object initValue;
+        public NameValue(string name)
+        {
+            this.name = name;
+        }
 
         public NameValue(string name, JsonField value)
         {
             this.name = name;
+            this.notNull = false;
             this.value = value;
         }
 
         public NameValue(string name, string value)
         {
             this.name = name;
-            if (value != null)
+            this.notNull = value != null;
+            if (notNull)
             {
                 this.value = new JsonString(value);
+                this.initValue = "";
             }
             else
             {
@@ -344,18 +358,24 @@ namespace Json2DartClass
         public NameValue(string name, bool value)
         {
             this.name = name;
+            this.notNull = true;
+            this.initValue = false;
             this.value = new JsonBoolean(value);
         }
 
         public NameValue(string name, double value)
         {
             this.name = name;
+            this.notNull = true;
+            this.initValue = 0;
             this.value = new JsonNumber(value);
         }
 
         public NameValue(string name, int value)
         {
             this.name = name;
+            this.notNull = true;
+            this.initValue = 0;
             this.value = new JsonNumber(value);
         }
 

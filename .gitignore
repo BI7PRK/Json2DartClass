@@ -11,4 +11,4 @@ packages/
 .vscode/
 .vs/
 .DS_Store
-./nuget.cmd
+*.cmd

@@ -21,16 +21,21 @@ namespace Json2DartClass
         }
 
        
-        public string DartFieldDeclaration(string name)
+        public string DartFieldDeclaration(string name, bool notNull = false)
         {
-            return $"\t{dartTypeName}? {name};";
+            return $"\t{dartTypeName}{(notNull ? "" : "?")} {name};";
         }
 
         public abstract string DartMapAssignment(string name);
 
-        public string DartConstuctorParams(string name)
+        public string DartConstuctorParams(string name, bool notNull, object value)
         {
-            return $"this.{name}, ";
+            var str = $"this.{name}";
+            if (notNull)
+            {
+                str += $"={(string.IsNullOrEmpty(value.ToString()) ? "\"\"": value) }";
+            }
+            return $"{str}, ";
         }
 
         public abstract string DartMapFetching(string name);

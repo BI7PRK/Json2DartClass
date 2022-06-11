@@ -103,7 +103,7 @@ namespace Json2DartClass
 		public double getDouble(int index)
 		{
 			JsonNumber tmp = (JsonNumber)getValue(index);
-			return (double)tmp.value;
+			return tmp.value;
 		}
 
 		public int getInt(int index)
