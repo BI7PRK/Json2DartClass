@@ -220,7 +220,6 @@ namespace Json2DartClass
             sb.Append($"\t{dartTypeName}({{");
             foreach (var item in this.nameValues)
             {
-                Console.WriteLine("{0}={2} {1}", item.name, item.notNull, item.initValue);
                 sb.Append(item.value.DartConstuctorParams(item.name, item.notNull, item.initValue));
             }
             sb.AppendLine("});");
@@ -327,7 +326,7 @@ namespace Json2DartClass
         public string name;
         public JsonField value;
         public bool notNull;
-        public object initValue;
+        public string initValue;
         public NameValue(string name)
         {
             this.name = name;
@@ -359,7 +358,7 @@ namespace Json2DartClass
         {
             this.name = name;
             this.notNull = true;
-            this.initValue = false;
+            this.initValue = "false";
             this.value = new JsonBoolean(value);
         }
 
@@ -367,7 +366,7 @@ namespace Json2DartClass
         {
             this.name = name;
             this.notNull = true;
-            this.initValue = 0;
+            this.initValue = "0";
             this.value = new JsonNumber(value);
         }
 
@@ -375,7 +374,7 @@ namespace Json2DartClass
         {
             this.name = name;
             this.notNull = true;
-            this.initValue = 0;
+            this.initValue = "0";
             this.value = new JsonNumber(value);
         }
 

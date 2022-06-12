@@ -28,7 +28,7 @@ namespace Json2DartClass
 
         public abstract string DartMapAssignment(string name);
 
-        public string DartConstuctorParams(string name, bool notNull, object value)
+        public string DartConstuctorParams(string name, bool notNull, string value)
         {
             var str = $"this.{name}";
             if (notNull)
