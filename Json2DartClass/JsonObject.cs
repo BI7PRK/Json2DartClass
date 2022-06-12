@@ -57,7 +57,7 @@ namespace Json2DartClass
         {
             var obj = getOrNew(name);
             obj.value = new JsonNumber(value);
-            obj.initValue = 0;
+            obj.initValue = "0";
             obj.notNull = true;
             return this;
         }
@@ -66,7 +66,7 @@ namespace Json2DartClass
         {
             var obj = getOrNew(name);
             obj.value= new JsonBoolean(value);
-            obj.initValue = false;
+            obj.initValue = "0";
             obj.notNull = true;
 
             return this;
