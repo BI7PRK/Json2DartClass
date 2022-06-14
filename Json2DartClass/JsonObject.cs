@@ -66,7 +66,7 @@ namespace Json2DartClass
         {
             var obj = getOrNew(name);
             obj.value= new JsonBoolean(value);
-            obj.initValue = "0";
+            obj.initValue = "false";
             obj.notNull = true;
 
             return this;
@@ -327,6 +327,7 @@ namespace Json2DartClass
         public JsonField value;
         public bool notNull;
         public string initValue;
+
         public NameValue(string name)
         {
             this.name = name;
@@ -346,7 +347,6 @@ namespace Json2DartClass
             if (notNull)
             {
                 this.value = new JsonString(value);
-                this.initValue = "";
             }
             else
             {
@@ -358,7 +358,6 @@ namespace Json2DartClass
         {
             this.name = name;
             this.notNull = true;
-            this.initValue = "false";
             this.value = new JsonBoolean(value);
         }
 
@@ -366,15 +365,6 @@ namespace Json2DartClass
         {
             this.name = name;
             this.notNull = true;
-            this.initValue = "0";
-            this.value = new JsonNumber(value);
-        }
-
-        public NameValue(string name, int value)
-        {
-            this.name = name;
-            this.notNull = true;
-            this.initValue = "0";
             this.value = new JsonNumber(value);
         }
 
